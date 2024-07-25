@@ -1,0 +1,30 @@
+{{define "content"}}
+<h1 class="mdl-typography--display-1">Todo List</h1>
+
+{{if .LoggedIn}}
+<a href="/add-note" hx-boost="true" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+    Add Note
+</a>
+{{else}}
+<p class="mdl-typography--subhead">Please <a href="/login">login</a> to add notes.</p>
+{{end}}
+
+<div class="mdl-grid">
+    {{range .Notes}}
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">{{.Name}}</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                {{.Content}}
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="mdl-cell mdl-cell--12-col">
+        <p class="mdl-typography--subhead">No notes yet.</p>
+    </div>
+    {{end}}
+</div>
+{{end}}
